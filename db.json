@@ -1,0 +1,22 @@
+{
+    "books": [
+        {
+            "Title": "Rose",
+            "Author": S. King,
+            "Year": 2013,
+            "Count": 20
+        },
+        {
+            "Title": "Blue and White",
+            "Author": D. Morgen,
+            "Year": 2001,
+            "Count": 1
+        },
+        {
+            "Title": "Androids - complete tutorial",
+            "Author": S. Lem,
+            "Year": 2004,
+            "Count": 5
+        }
+    ]
+}
