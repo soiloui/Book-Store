@@ -1,22 +1,22 @@
 {
         "Book":[
         {
-            "Title": "Rose",
-            "Author": "S. King",
-            "Year": 2013,
-            "Count": 20
+            "title": "Rose",
+            "author": "S. King",
+            "year": 2013,
+            "count": 20
         },
         {
-            "Title": "Blue and White",
-            "Author": "D. Morgen",
-            "Year": 2001,
-            "Count": 1
+            "title": "Blue and White",
+            "author": "D. Morgen",
+            "year": 2001,
+            "count": 1
         },
         {
-            "Title": "Androids - complete tutorial",
-            "Author": "S. Lem",
-            "Year": 2004,
-            "Count": 5
+            "title": "Androids - complete tutorial",
+            "author": "S. Lem",
+            "year": 2004,
+            "count": 5
         }
         ]
 }
