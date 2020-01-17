@@ -94,9 +94,10 @@ magazineDo = e =>{
         if (bookMagazine.length>0){
             if(btn == 'magazine_plus'){
                 bookMagazine[0].count++;
-                displayStatusChange('Book added', "rgba(150, 250, 150, .95)");
+                displayStatusChange('Book amount increased.', "rgba(150, 250, 150, .95)");
             }else if(btn == 'magazine_minus'){
                 bookMagazine[0].count--;
+                displayStatusChange('Book amount decreased.', "rgba(250, 150, 150, .95)");
                 if(bookMagazine[0].count <= 0){
                     deleteBook(bookMagazine);
                 }
