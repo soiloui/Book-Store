@@ -7,10 +7,11 @@ const INFORM_div = document.querySelector('.sys_information');
 const YEAR_input = document.querySelector('#sale_year');
 
 class Book {
-    constructor(title, author, year) {
+    constructor(title, author, year, count) {
         this.title = title;
         this.author = author;
         this.year = year;
+        this.count = count;
     }
     getInfo() {
         return `${this.title} book was written by ${this.author} in ${this.year} year`;
@@ -25,35 +26,49 @@ add = e =>{
 
     if(chceckBook(title, author, year)){
     
-        let newBook = new Book(title.value, author.value, year.value);
+        let newBook = new Book(title.value, author.value, year.value, 1);
         LIBRARY.push(newBook);
 
-        const LIB_sort = LIBRARY
+        showBook();
+        displayStatusChange('Book added', "rgba(150, 250, 150, .95)");
+    }
+    e.preventDefault();
+}
+
+showBook = () =>{
+    const LIB_sort = LIBRARY
         .sort((a, b) => a.title > b.title ? 1 : -1)
         .map(book =>  `
         <li class='book'>
             <h3>${book.title}</h3>
             <p>Author: ${book.author}</p> 
             <p>Year: ${book.year}</p>
+            <p class='p_magazine'>On magazine: ${book.count}</p>
+            <div class='btns_div'>
+                <button class='book_btn' id='remove_all'>Remove all copies</button>
+                <button class='book_btn' id='magazine_plus'>+</button>
+                <button class='book_btn' id='magazine_minus'>-</button>
+            </div>
         </li>
         `)
         .join('');
 
         BOOKS_ul.innerHTML = LIB_sort;
-        displayStatusChange('Book added', "rgba(150, 250, 150, .95)");
-    }
-    e.preventDefault();
+        MAGAZINE_btns = document.querySelectorAll('.book_btn');
 }
-
 
 chceckBook = (title, author, year) =>{
     if(title.value != '' && author.value!='' && year.value!='') {
         
-        if(LIBRARY.filter(book => {
-        return (book.title == title.value && book.author == author.value && book.year == year.value)
-        }).length > 0)
+        let filtered = LIBRARY.filter(book => {
+        return (book.title == title.value && book.author == author.value && book.year == year.value)});
+
+        if (filtered.length>0)
             {
                 displayStatusChange('Book already exist - moved to magaizne', "rgba(150, 150, 150, .95)");
+                filtered[0].count++;
+                showBook();
+
                 return false;
             }else{
                 return true;
@@ -65,6 +80,38 @@ chceckBook = (title, author, year) =>{
     }
 }
 
+magazineDo = e =>{
+    if(e.target.classList.contains('book_btn')){
+        let btn = e.target.id;
+        let title = e.target.parentNode.parentNode.firstElementChild;
+        let author = title.nextElementSibling;
+        let year = author.nextElementSibling;
+
+        let bookMagazine = LIBRARY.filter(book =>{
+            return(book.title == title.innerText && 'Author: '+book.author == author.innerText && 'Year: '+book.year == year.innerText);
+        });
+
+        if (bookMagazine.length>0){
+            if(btn == 'magazine_plus'){
+                bookMagazine[0].count++;
+            }else if(btn == 'magazine_minus'){
+                bookMagazine[0].count--;
+                if(bookMagazine[0].count <= 0){
+                    deleteBook(bookMagazine);
+                }
+            }else if(btn == 'remove_all'){
+                deleteBook(bookMagazine);
+            }
+        }
+        showBook();
+    }
+}
+
+deleteBook = bookMagazine =>{
+    let indexBook = LIBRARY.indexOf(bookMagazine[0]);
+    LIBRARY.splice(indexBook, 1);
+    displayStatusChange('Book removed.', "rgba(250, 150, 150, .95)");
+}
 
 search = () =>{
     const typed = SEARCH_input.value;
@@ -83,6 +130,12 @@ search = () =>{
                 <h3>${hlTitle}</h3>
                 <p>Author: ${hlAuthor}</p> 
                 <p>Year: ${book.year}</p>
+                <p class='p_magazine'>On magazine: ${book.count}</p>
+                <div class='btns_div'>
+                    <button class='book_btn' id='remove_all'>Remove all copies</button>
+                    <button class='book_btn' id='magazine_plus'>+</button>
+                    <button class='book_btn' id='magazine_minus'>-</button>
+                </div>
             </li>
             `)
         })
@@ -108,6 +161,7 @@ displayStatusChange = (status, color) =>{
 
 SEARCH_input.addEventListener('keyup', search);
 ADD_btn.addEventListener('click', add);
-YEAR_input.addEventListener('input', checkNumber=()=>{
+YEAR_input.addEventListener('input', ()=>{
     YEAR_input.value = YEAR_input.value.replace(/\D/, '');
 });
+BOOKS_ul.addEventListener('click', magazineDo);

@@ -78,7 +78,6 @@ main{
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    
 }
 .addBook>button{
     width: 50px;
@@ -96,11 +95,7 @@ input::-webkit-inner-spin-button {
     width: 100%;
     height: 25px;
 }
-#books{
-    align-self: flex-start;
-    width: 100%;
-    list-style-type: none;
-}
+
 .book{
     margin-bottom: 10px;
     padding: 6px 10px;
@@ -108,6 +103,47 @@ input::-webkit-inner-spin-button {
     border-radius: 5px;
     text-transform: capitalize;
 }
+#books{
+    align-self: flex-start;
+    width: 100%;
+    list-style-type: none;
+    position: relative;
+}
+#books>li{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.p_magazine{
+    align-self: flex-end;
+}
+.btns_div{
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 6px 10px;
+}
+.btns_div>:nth-child(n+2){
+    width: 30px;
+    font-size: 18px;
+    margin-left: 10px;
+}
+.book_btn{
+    border: 0;
+    outline: 0;
+    border-radius: 12px;
+    padding: 10px;
+}
+.book_btn:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 15px 1px white;
+}
+.book_btn:active{
+    transform: scale(.93);
+}
+
 .hl{
     background-color: darkseagreen;
 }
