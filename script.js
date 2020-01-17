@@ -1,3 +1,4 @@
+'use strict'
 const SALE_art = document.getElementById("sale");
 const ADD_btn = document.querySelector(".add_btn");
 const SEARCH_input = document.querySelector('#search_input');
@@ -13,13 +14,10 @@ class Book {
         this.year = year;
         this.count = count;
     }
-    getInfo() {
-        return `${this.title} book was written by ${this.author} in ${this.year} year`;
-    }
 }
 
 
-add = e =>{
+function add(e){
     let title = e.currentTarget.parentNode.firstElementChild;
     let author = title.nextElementSibling;
     let year = author.nextElementSibling;
@@ -35,8 +33,9 @@ add = e =>{
     e.preventDefault();
 }
 
-showBook = () =>{
+function showBook(){
     const LIB_sort = LIBRARY
+        .sort((a, b) => a.year > b.year ? 1 : -1)
         .sort((a, b) => a.title > b.title ? 1 : -1)
         .map(book =>  `
         <li class='book'>
@@ -54,10 +53,24 @@ showBook = () =>{
         .join('');
 
         BOOKS_ul.innerHTML = LIB_sort;
-        MAGAZINE_btns = document.querySelectorAll('.book_btn');
 }
 
-chceckBook = (title, author, year) =>{
+
+async function fetchData(){
+    const res = await fetch('https://my-json-server.typicode.com/soiloui/Book-Store/Book')
+    const data = await res.json();
+    data.forEach(book => {
+        LIBRARY.push(book);
+    });
+    showBook();
+}
+fetchData()
+    .catch(error=>{
+        console.log(error);
+    });
+
+
+function chceckBook(title, author, year){
     if(title.value != '' && author.value!='' && year.value!='') {
         
         let filtered = LIBRARY.filter(book => {
@@ -80,7 +93,7 @@ chceckBook = (title, author, year) =>{
     }
 }
 
-magazineDo = e =>{
+function magazineDo(e){
     if(e.target.classList.contains('book_btn')){
         let btn = e.target.id;
         let title = e.target.parentNode.parentNode.firstElementChild;
@@ -88,7 +101,9 @@ magazineDo = e =>{
         let year = author.nextElementSibling;
 
         let bookMagazine = LIBRARY.filter(book =>{
-            return(book.title == title.innerText && 'Author: '+book.author == author.innerText && 'Year: '+book.year == year.innerText);
+            const regexTitle = new RegExp(title.innerText, 'gi');
+
+            return(regexTitle.test(book.title) && 'Author: '+book.author == author.innerText && 'Year: '+book.year == year.innerText);
         });
 
         if (bookMagazine.length>0){
@@ -109,19 +124,20 @@ magazineDo = e =>{
     }
 }
 
-deleteBook = bookMagazine =>{
+function deleteBook(bookMagazine){
     let indexBook = LIBRARY.indexOf(bookMagazine[0]);
     LIBRARY.splice(indexBook, 1);
     displayStatusChange('Book removed.', "rgba(250, 150, 150, .95)");
 }
 
-search = () =>{
+function search(){
     const typed = SEARCH_input.value;
     const regex = new RegExp(typed, 'gi');
     const search_filter = LIBRARY
         .filter(book => {
             return book.title.match(regex) || book.author.match(regex);
         })
+        .sort((a, b) => a.year > b.year ? 1 : -1)
         .sort((a, b) => a.title > b.title ? 1 : -1)
         .map(book =>{
             const hlTitle = book.title.replace(regex, `<span class='hl'>${typed}</span>`);
@@ -146,7 +162,7 @@ search = () =>{
 }
 
 let timeoutInfo;
-displayStatusChange = (status, color) =>{
+function displayStatusChange(status, color){
     INFORM_div.innerHTML = `
     <span>${status}</span>
     </div>

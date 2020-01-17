@@ -101,7 +101,7 @@ input::-webkit-inner-spin-button {
     padding: 6px 10px;
     background-color: rgba(200, 200, 200, 0.8);
     border-radius: 5px;
-    text-transform: capitalize;
+    
 }
 #books{
     align-self: flex-start;
@@ -113,6 +113,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     flex-direction: column;
     position: relative;
+    text-transform: capitalize;
 }
 .p_magazine{
     align-self: flex-end;
