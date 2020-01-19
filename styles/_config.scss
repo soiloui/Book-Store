@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Gelasio|Lato&display=swap');
+
+@mixin media-sm{
+    @media screen and (min-width: 200px){
+        @content;
+    }
+}
+@mixin media-md{
+    @media screen and (min-width: 640px){
+        @content;
+    }
+}
+@mixin media-lg{
+    @media screen and (min-width: 1024px){
+        @content;
+    }
+}
+@mixin media-xl{
+    @media screen and (min-width: 1600px){
+        @content;
+    }
+}

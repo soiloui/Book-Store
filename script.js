@@ -1,11 +1,12 @@
 'use strict'
-const SALE_art = document.getElementById("sale");
-const ADD_btn = document.querySelector(".add_btn");
+const SALE_art = document.querySelector("#sale");
+const ADD_btn = document.querySelector("#add_btn");
 const SEARCH_input = document.querySelector('#search_input');
 const BOOKS_ul = document.querySelector('#books');
 const LIBRARY = [];
-const INFORM_div = document.querySelector('.sys_information');
+const INFORM_div = document.querySelector('#INFORM_div');
 const YEAR_input = document.querySelector('#sale_year');
+const COUNT_input = document.querySelector('#sale_count');
 
 class Book {
     constructor(title, author, year, count) {
@@ -21,10 +22,14 @@ function add(e){
     let title = e.currentTarget.parentNode.firstElementChild;
     let author = title.nextElementSibling;
     let year = author.nextElementSibling;
+    let count = year.nextElementSibling.value;
+    if(count == ''){
+        count = 1;
+    }
 
-    if(chceckBook(title, author, year)){
+    if(chceckBook(title, author, year, count)){
     
-        let newBook = new Book(title.value, author.value, year.value, 1);
+        let newBook = new Book(title.value, author.value, year.value, count);
         LIBRARY.push(newBook);
 
         showBook();
@@ -38,15 +43,17 @@ function showBook(){
         .sort((a, b) => a.year > b.year ? 1 : -1)
         .sort((a, b) => a.title > b.title ? 1 : -1)
         .map(book =>  `
-        <li class='book'>
-            <h3>${book.title}</h3>
-            <p>Author: ${book.author}</p> 
-            <p>Year: ${book.year}</p>
-            <p class='p_magazine'>On magazine: ${book.count}</p>
-            <div class='btns_div'>
-                <button class='book_btn' id='remove_all'>Remove all copies</button>
-                <button class='book_btn' id='magazine_plus'>+</button>
-                <button class='book_btn' id='magazine_minus'>-</button>
+        <li class='sale__ul_li'>
+            <div class='sale__ul_li--book'>
+                <h3>${book.title}</h3>
+                <p>Author: ${book.author}</p> 
+                <p>Year: ${book.year}</p>
+                <p class='sale__ul_li--magazine'>On magazine: ${book.count}</p>
+            </div>
+            <div class='sale__ul_li__div'>
+                <button class='sale__ul_li__div--btn book_btn' id='remove_all'>Remove all copies</button>
+                <button class='sale__ul_li__div--btn book_btn' id='magazine_plus'>+</button>
+                <button class='sale__ul_li__div--btn book_btn' id='magazine_minus'>-</button>
             </div>
         </li>
         `)
@@ -70,7 +77,7 @@ fetchData()
     });
 
 
-function chceckBook(title, author, year){
+function chceckBook(title, author, year, CNT){
     if(title.value != '' && author.value!='' && year.value!='') {
         
         let filtered = LIBRARY.filter(book => {
@@ -79,7 +86,7 @@ function chceckBook(title, author, year){
         if (filtered.length>0)
             {
                 displayStatusChange('Book already exist - moved to magaizne', "rgba(150, 150, 150, .95)");
-                filtered[0].count++;
+                filtered[0].count+=parseInt(CNT);
                 showBook();
 
                 return false;
@@ -144,15 +151,15 @@ function search(){
             const hlAuthor = book.author.replace(regex, `<span class='hl'>${typed}</span>`);
             return(
             `
-            <li class='book'>
+            <li class='sale__ul_li'>
                 <h3>${hlTitle}</h3>
                 <p>Author: ${hlAuthor}</p> 
                 <p>Year: ${book.year}</p>
-                <p class='p_magazine'>On magazine: ${book.count}</p>
-                <div class='btns_div'>
-                    <button class='book_btn' id='remove_all'>Remove all copies</button>
-                    <button class='book_btn' id='magazine_plus'>+</button>
-                    <button class='book_btn' id='magazine_minus'>-</button>
+                <p class='sale__ul_li--magazine'>On magazine: ${book.count}</p>
+                <div class='sale__ul_li__div'>
+                    <button class='sale__ul_li__div--btn book_btn' id='remove_all'>Remove all copies</button>
+                    <button class='sale__ul_li__div--btn book_btn' id='magazine_plus'>+</button>
+                    <button class='sale__ul_li__div--btn book_btn' id='magazine_minus'>-</button>
                 </div>
             </li>
             `)
@@ -167,19 +174,23 @@ function displayStatusChange(status, color){
     <span>${status}</span>
     </div>
     `;
-    INFORM_div.classList.remove("hidden");
+    INFORM_div.classList.remove("sale__information--hidden");
     INFORM_div.style.backgroundColor = color;
     clearInterval(timeoutInfo);
     timeoutInfo = 
         setTimeout(() => {
-            INFORM_div.classList.add("hidden");
+            INFORM_div.classList.add("sale__information--hidden");
             }, 2300);
 }
 
 
 SEARCH_input.addEventListener('keyup', search);
 ADD_btn.addEventListener('click', add);
+BOOKS_ul.addEventListener('click', magazineDo);
+
 YEAR_input.addEventListener('input', ()=>{
     YEAR_input.value = YEAR_input.value.replace(/\D/, '');
 });
-BOOKS_ul.addEventListener('click', magazineDo);
+COUNT_input.addEventListener('input', ()=>{
+    COUNT_input.value = COUNT_input.value.replace(/\D/, '');
+});

@@ -1,0 +1,74 @@
+@include media-sm{
+    .header--title{
+        font-size: 35px;
+    }
+    .sale{
+        width: 380px;
+
+        &__form{
+            flex-wrap: wrap;
+            font-size: 16px;
+
+            &--text{
+                height: 25px;
+            }
+
+            &--button{
+                width: 50px;
+                height: 25px;
+            }
+        }
+        &__input{
+            height: 25px;
+            font-size: 13px;
+        }
+    }
+}
+
+@include media-md{
+    .sale{
+        width: 580px;
+
+        &__form{
+            flex-wrap: nowrap;
+        }
+    }
+}
+
+@include media-lg{
+    .sale{
+        width: 780px;
+    }
+}
+
+@include media-xl{
+    .header--title{
+        font-size: 50px;
+    }
+    .sale{
+        width: 850px;
+        font-size: 18px;
+
+        &--title{
+            font-size: 38px;
+        }
+
+        &__form{
+            
+            &--text{
+                height: 32px;
+                font-size: 18px;
+            }
+            &--button{
+                width: 200px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        &__input{
+            height: 32px;
+            font-size: 18px;
+        }
+    }
+}

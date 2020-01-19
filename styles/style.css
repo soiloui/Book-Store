@@ -1,0 +1,319 @@
+@import url("https://fonts.googleapis.com/css?family=Gelasio|Lato&display=swap");
+@media screen and (min-width: 200px) {
+  .header--title {
+    font-size: 35px;
+  }
+  .sale {
+    width: 380px;
+  }
+  .sale__form {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    font-size: 16px;
+  }
+  .sale__form--text {
+    height: 25px;
+  }
+  .sale__form--button {
+    width: 50px;
+    height: 25px;
+  }
+  .sale__input {
+    height: 25px;
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .sale {
+    width: 580px;
+  }
+  .sale__form {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .sale {
+    width: 780px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .header--title {
+    font-size: 50px;
+  }
+  .sale {
+    width: 850px;
+    font-size: 18px;
+  }
+  .sale--title {
+    font-size: 38px;
+  }
+  .sale__form--text {
+    height: 32px;
+    font-size: 18px;
+  }
+  .sale__form--button {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+  }
+  .sale__input {
+    height: 32px;
+    font-size: 18px;
+  }
+}
+
+*, *::before, *::after {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Gelasio', serif;
+  min-height: 100vh;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body::after {
+  content: "";
+  background-image: url("https://images.pexels.com/photos/590493/pexels-photo-590493.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.8;
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.header {
+  margin: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header--title {
+  text-transform: uppercase;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.sale {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(150, 150, 150, 0.5);
+  -webkit-box-shadow: 3px 3px 10px black;
+          box-shadow: 3px 3px 10px black;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.sale__information {
+  border-bottom: 2px solid #000;
+  font-size: 26px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+  display: auto;
+}
+
+.sale__information--hidden {
+  display: none;
+}
+
+.sale__form {
+  width: 100%;
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sale__form--text {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  min-width: 0;
+  -moz-appearance: textfield;
+}
+
+.sale__form--text-count {
+  -ms-flex-negative: 3;
+      flex-shrink: 3;
+}
+
+.sale__form--button {
+  border-radius: 5px;
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+
+.sale__input {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 10px 0 20px 0;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  border-radius: 5px;
+  padding-left: 5px;
+  width: 100%;
+}
+
+.sale__ul {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 100%;
+  list-style-type: none;
+  position: relative;
+}
+
+.sale__ul_li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  background-color: rgba(200, 200, 200, 0.8);
+  border-radius: 5px;
+}
+
+.sale__ul_li--book {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-transform: capitalize;
+}
+
+.sale__ul_li--magazine {
+  margin-top: 5px;
+}
+
+.sale__ul_li__div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 50%;
+}
+
+.sale__ul_li__div > :nth-child(n+2) {
+  width: 30px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.sale__ul_li__div--btn {
+  border: 0;
+  outline: 0;
+  border-radius: 12px;
+  padding: 10px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.sale__ul_li__div--btn:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.95);
+  -webkit-box-shadow: 0 0 15px 1px white;
+          box-shadow: 0 0 15px 1px white;
+}
+
+.sale__ul_li__div--btn:active {
+  -webkit-transform: scale(0.93);
+          transform: scale(0.93);
+}
+
+.hl {
+  background-color: darkseagreen;
+}
+
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 25px 0 10px 0;
+}
+/*# sourceMappingURL=style.css.map */

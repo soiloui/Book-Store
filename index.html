@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <title>Books</title>
 </head>
 <body>
-    <header>
-        <h1>Books for all</h1>
+    <header class="header">
+        <h1 class="header--title">Books for all</h1>
     </header>
 
     <main>
-        <article id="sale">
-            <div class='sys_information hidden'></div>
-            <h2>Our books</h2>
-            <form class="addBook">
-                <input type="text" id="sale_title" placeholder="Title" value="Rose">
-                <input type="text" id="sale_author" placeholder="Author" value="S. King">
-                <input type="text" id="sale_year" placeholder="Year" value="1998" maxlength="4">
-                <button class="add_btn">add</button>
+        <article class="sale" id="sale">
+            <div class='sale__information sale__information--hidden' id="INFORM_div"></div>
+            <h2 class="sale--title">Our books</h2>
+            <form class="sale__form">
+                <input type="text" class="sale__form--text" id="sale_title" placeholder="Title" value="Rose">
+                <input type="text" class="sale__form--text" id="sale_author" placeholder="Author" value="S. King">
+                <input type="text" class="sale__form--text" id="sale_year" placeholder="Year" value="1998" maxlength="4">
+                <input type="text" class="sale__form--text sale__form--text-count" id="sale_count" placeholder="count" maxlength="4">
+                <button class="sale__form--button" id="add_btn">add</button>
             </form>
-            <input type="text" id="search_input" placeholder="Search..">
+            <input type="text" class="sale__input" id="search_input" placeholder="Search..">
 
-            <ul id="books"></ul>
+            <ul class="sale__ul" id="books"></ul>
         </article>
     </main>
 
-    <footer>
-        <span>Mieczyslaw Company</span>
+    <footer class="footer">
+        <span class="footer_span">Mieczyslaw Company</span>
     </footer>
     <script src="script.js"></script>
 </body>
