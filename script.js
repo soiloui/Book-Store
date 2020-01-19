@@ -33,7 +33,7 @@ function add(e){
         LIBRARY.push(newBook);
 
         showBook();
-        displayStatusChange('Book added', "rgba(150, 250, 150, .95)");
+        displayStatusChange('Book added', "rgb(150, 250, 150)");
     }
     e.preventDefault();
 }
@@ -85,7 +85,7 @@ function chceckBook(title, author, year, CNT){
 
         if (filtered.length>0)
             {
-                displayStatusChange('Book already exist - moved to magaizne', "rgba(150, 150, 150, .95)");
+                displayStatusChange('Book already exist - moved to magaizne', "rgb(150, 150, 150)");
                 filtered[0].count+=parseInt(CNT);
                 showBook();
 
@@ -95,7 +95,7 @@ function chceckBook(title, author, year, CNT){
             }
                 
     }else{
-        displayStatusChange('Please fill in entire form.', "rgba(250, 150, 150, .95)");
+        displayStatusChange('Please fill in entire form.', "rgb(250, 150, 150)");
         return false;
     }
 }
@@ -103,7 +103,7 @@ function chceckBook(title, author, year, CNT){
 function magazineDo(e){
     if(e.target.classList.contains('book_btn')){
         let btn = e.target.id;
-        let title = e.target.parentNode.parentNode.firstElementChild;
+        let title = e.target.parentNode.parentNode.firstElementChild.firstElementChild;
         let author = title.nextElementSibling;
         let year = author.nextElementSibling;
 
@@ -116,10 +116,10 @@ function magazineDo(e){
         if (bookMagazine.length>0){
             if(btn == 'magazine_plus'){
                 bookMagazine[0].count++;
-                displayStatusChange('Book amount increased.', "rgba(150, 250, 150, .95)");
+                displayStatusChange('Book amount increased.', "rgba(150, 250, 150)");
             }else if(btn == 'magazine_minus'){
                 bookMagazine[0].count--;
-                displayStatusChange('Book amount decreased.', "rgba(250, 150, 150, .95)");
+                displayStatusChange('Book amount decreased.', "rgba(250, 150, 150)");
                 if(bookMagazine[0].count <= 0){
                     deleteBook(bookMagazine);
                 }
@@ -134,7 +134,7 @@ function magazineDo(e){
 function deleteBook(bookMagazine){
     let indexBook = LIBRARY.indexOf(bookMagazine[0]);
     LIBRARY.splice(indexBook, 1);
-    displayStatusChange('Book removed.', "rgba(250, 150, 150, .95)");
+    displayStatusChange('Book removed.', "rgba(250, 150, 150)");
 }
 
 function search(){
@@ -152,10 +152,12 @@ function search(){
             return(
             `
             <li class='sale__ul_li'>
-                <h3>${hlTitle}</h3>
-                <p>Author: ${hlAuthor}</p> 
-                <p>Year: ${book.year}</p>
-                <p class='sale__ul_li--magazine'>On magazine: ${book.count}</p>
+                <div class='sale__ul_li--book'>
+                    <h3>${hlTitle}</h3>
+                    <p>Author: ${hlAuthor}</p> 
+                    <p>Year: ${book.year}</p>
+                    <p class='sale__ul_li--magazine'>On magazine: ${book.count}</p>
+                </div>
                 <div class='sale__ul_li__div'>
                     <button class='sale__ul_li__div--btn book_btn' id='remove_all'>Remove all copies</button>
                     <button class='sale__ul_li__div--btn book_btn' id='magazine_plus'>+</button>

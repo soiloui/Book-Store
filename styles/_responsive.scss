@@ -3,7 +3,7 @@
         font-size: 35px;
     }
     .sale{
-        width: 380px;
+        width: 100%;
 
         &__form{
             flex-wrap: wrap;
@@ -21,6 +21,16 @@
         &__input{
             height: 25px;
             font-size: 13px;
+        }
+
+        &__ul{
+            &_li{
+                &__div{
+                    &>:nth-child(n + 2){
+                        margin-top: 5px;
+                    }
+                }
+            }
         }
     }
 }
@@ -54,7 +64,6 @@
         }
 
         &__form{
-            
             &--text{
                 height: 32px;
                 font-size: 18px;
@@ -69,6 +78,16 @@
         &__input{
             height: 32px;
             font-size: 18px;
+        }
+
+        &__ul{
+            &_li{
+                &__div{
+                    &>:nth-child(1){
+                        font-size: 18px;
+                    }
+                }
+            }
         }
     }
 }
