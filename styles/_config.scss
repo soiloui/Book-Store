@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gelasio|Lato&display=swap');
 
 @mixin media-sm{
-    @media screen and (min-width: 200px){
+    @media screen and (min-width: 50px){
         @content;
     }
 }

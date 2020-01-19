@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Gelasio|Lato&display=swap");
-@media screen and (min-width: 200px) {
+@media screen and (min-width: 50px) {
   .header--title {
     font-size: 35px;
   }
@@ -120,6 +120,7 @@ body::after {
 
 .header--title {
   text-transform: uppercase;
+  text-align: center;
 }
 
 main {
@@ -256,7 +257,7 @@ main {
 }
 
 .sale__ul_li--book {
-  width: 50%;
+  width: 60%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -283,7 +284,7 @@ main {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  width: 50%;
+  width: 40%;
 }
 
 .sale__ul_li__div > :nth-child(n+2) {

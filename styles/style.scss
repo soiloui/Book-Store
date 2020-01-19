@@ -35,6 +35,7 @@ body{
 
     &--title{
         text-transform: uppercase;
+        text-align: center;
     }
 }
 main{
@@ -131,7 +132,7 @@ main{
             border-radius: 5px;
 
             &--book{
-                width: 50%;
+                width: 60%;
                 display: flex;
                 flex-direction: column;
                 text-transform: capitalize;
@@ -145,7 +146,7 @@ main{
                 flex-wrap: wrap;
                 justify-content: flex-end;
                 align-items: flex-start;
-                width: 50%;
+                width: 40%;
 
                 &>:nth-child(n+2){
                     margin-left: 10px;
